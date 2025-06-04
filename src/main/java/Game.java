@@ -7,13 +7,32 @@ public class Game {
         if(guessNumber.equals(question)){
             return new GuessResult(true, 3, 0);
         }else{
-            if(guessNumber.equals("124")){
+            int strikeCount = getStrikeCount(guessNumber);
+            int ballCount = getBallCount(guessNumber);
+
+            if( strikeCount == 2 && ballCount == 0){
                 return new GuessResult(false, 2, 0);
             }else{
                 return new GuessResult(false, 0, 0);
             }
         }
 
+    }
+
+    private int getStrikeCount(String guessNumber) {
+        int strikeCount = 0;
+        for(int i = 0; i < 3; i++){
+            if(guessNumber.charAt(i) == question.charAt(i))
+                strikeCount++;
+        }
+        return strikeCount;
+    }
+    private int getBallCount(String guessNumber) {
+        int ballCount = 0;
+        if(guessNumber.charAt(0) == question.charAt(1) || guessNumber.charAt(0) == question.charAt(2)) ballCount++;
+        if(guessNumber.charAt(1) == question.charAt(0) || guessNumber.charAt(1) == question.charAt(2)) ballCount++;
+        if(guessNumber.charAt(2) == question.charAt(0) || guessNumber.charAt(2) == question.charAt(1)) ballCount++;
+        return ballCount;
     }
 
     private void assertIllegalArgument(String guessNumber) {
