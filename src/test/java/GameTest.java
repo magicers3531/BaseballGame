@@ -59,4 +59,10 @@ class GameTest {
         generateQuestion("123");
         assertMatchedNumber(game.guess("456"), false, 0, 0);
     }
+    
+    @Test
+    void returnSolveResultIf2StrikeNumber() {
+        generateQuestion("123");
+        assertMatchedNumber(game.guess("124"), false, 2, 0);
+    }
 }

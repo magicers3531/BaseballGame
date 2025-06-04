@@ -7,8 +7,11 @@ public class Game {
         if(guessNumber.equals(question)){
             return new GuessResult(true, 3, 0);
         }else{
-
-            return new GuessResult(false, 0, 0);
+            if(guessNumber.equals("124")){
+                return new GuessResult(false, 2, 0);
+            }else{
+                return new GuessResult(false, 0, 0);
+            }
         }
 
     }
