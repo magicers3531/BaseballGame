@@ -4,21 +4,15 @@ public class Game {
 
     public GuessResult guess(String guessNumber) {
         assertIllegalArgument(guessNumber);
-        if(guessNumber.equals(question)){
-            return new GuessResult(true, 3, 0);
-        }else{
-            int strikeCount = getStrikeCount(guessNumber);
-            int ballCount = getBallCount(guessNumber);
+        return getGuessResult(guessNumber);
+    }
 
-            if( strikeCount == 2 && ballCount == 0){
-                return new GuessResult(false, 2, 0);
-            }else if( strikeCount == 1 && ballCount == 2){
-                return new GuessResult(false, 1, 2);
-            }else{
-                return new GuessResult(false, 0, 0);
-            }
-        }
+    private GuessResult getGuessResult(String guessNumber) {
+        int strikeCount = getStrikeCount(guessNumber);
+        int ballCount = getBallCount(guessNumber);
+        boolean isSolved = (strikeCount == 3);
 
+        return new GuessResult(isSolved, strikeCount, ballCount);
     }
 
     private int getStrikeCount(String guessNumber) {
