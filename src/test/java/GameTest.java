@@ -1,6 +1,8 @@
+import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+import static org.assertj.core.api.Assertions.*;
 import static org.junit.jupiter.api.Assertions.*;
 
 class GameTest {
@@ -19,12 +21,13 @@ class GameTest {
     private void assertIllegalArgument(String guessNumber) {
         try{
             game.guess(guessNumber);
-            fail();
+            org.assertj.core.api.Assertions.fail();
         }
         catch (IllegalArgumentException e){
 
         }
     }
+
 
     @Test
     void throwIllegalArgumentExceptionInvalidInput() {
@@ -35,5 +38,14 @@ class GameTest {
         assertIllegalArgument("121");
     }
 
+    @Test
+    void returnSolveResultIfMatchNumber() {
+        game.question = "123";
+        GuessResult result = game.guess("123");
 
+        assertThat(result).isNotNull();
+        assertThat(result.solved).isEqualTo(true);
+        assertThat(result.strikes).isEqualTo(3);
+        assertThat(result.balls).isEqualTo(0);
+    }
 }
