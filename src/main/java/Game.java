@@ -12,6 +12,8 @@ public class Game {
 
             if( strikeCount == 2 && ballCount == 0){
                 return new GuessResult(false, 2, 0);
+            }else if( strikeCount == 1 && ballCount == 2){
+                return new GuessResult(false, 1, 2);
             }else{
                 return new GuessResult(false, 0, 0);
             }

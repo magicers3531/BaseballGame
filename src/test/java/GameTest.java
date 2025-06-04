@@ -65,4 +65,10 @@ class GameTest {
         generateQuestion("123");
         assertMatchedNumber(game.guess("124"), false, 2, 0);
     }
+
+    @Test
+    void returnSolveResultIf1S2BNumber() {
+        generateQuestion("123");
+        assertMatchedNumber(game.guess("132"), false, 1, 2);
+    }
 }
